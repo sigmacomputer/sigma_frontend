@@ -7,18 +7,25 @@ const initialState = {
   message: "",
 };
 export const Contact = (props) => {
-  const [{ name, email, message }, setState] = useState(initialState);
+  const [{ name, email, phone, message }, setState] = useState(initialState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
+    if (name == "phone"){
+      const errorMessage = document.getElementById("error-message");
+      if (!e.target.validity.valid) {
+        errorMessage.textContent = "Please enter a valid 10-digit phone number.";
+      } else {
+        errorMessage.textContent = "";
+      }
+    }
   };
   const clearState = () => setState({ ...initialState });
   
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, message);
     {/* replace below with your own Service ID, Template ID and Public Key from your EmailJS account */ }
     
     let res = await fetch(props.data.actionURL, {
@@ -26,8 +33,13 @@ export const Contact = (props) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email, message })
+      body: JSON.stringify({ name, email, message, phone })
     })
+    
+    if (res?.ok){
+      alert("Message sent successfully")
+      e.target.reset()
+    }
 
     clearState()
   };
@@ -45,18 +57,32 @@ export const Contact = (props) => {
                 </p>
               </div>
               <form name="sentMessage" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="form-control"
+                    placeholder="Name"
+                    required
+                    onChange={handleChange}
+                  />
+                  <p className="help-block text-danger"></p>
+                </div>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
                       <input
                         type="text"
-                        id="name"
-                        name="name"
+                        id="phone"
+                        name="phone"
                         className="form-control"
-                        placeholder="Name"
+                        placeholder="Phone number"
                         required
+                        pattern="[0-9]{10}"
                         onChange={handleChange}
                       />
+                      <span id="error-message" style={{color: "red", fontWeight: "bolder"}}></span>
                       <p className="help-block text-danger"></p>
                     </div>
                   </div>
@@ -68,7 +94,7 @@ export const Contact = (props) => {
                         name="email"
                         className="form-control"
                         placeholder="Email"
-                        required
+                        // required
                         onChange={handleChange}
                       />
                       <p className="help-block text-danger"></p>
