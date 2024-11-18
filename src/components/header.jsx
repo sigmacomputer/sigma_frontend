@@ -5,7 +5,13 @@ export const Header = (props) => {
   return (
     <header id="header">
       <div className="intro" style={{
-        background: `url(${props.headerImage ? props.headerImage : BG}) center center no-repeat`
+        background: `url(${props.headerImage ? props.headerImage : BG}) center center no-repeat`,
+        backgroundSize: "cover",
+        width: "100%",
+        backgroundColor: "#e5e5e5",
+        WebkitBackgroundSize: "cover",
+        padding: 0,
+        display: "table"
       }}>
         <div className="overlay">
           <div className="container">
