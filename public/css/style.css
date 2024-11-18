@@ -208,7 +208,7 @@ a:focus,
   display: table;
   width: 100%;
   padding: 0;
-  background: url(../img/intro-bg.jpg) center center no-repeat;
+  
   background-color: #e5e5e5;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -339,6 +339,17 @@ header .intro-text {
   color: #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
+
+.serviceImage img{
+  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  padding: 10px 10px;
+  height: 120px;
+  width: 120px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 60px;
+}
+
 #services h3 {
   font-weight: 500;
   padding: 5px 0;

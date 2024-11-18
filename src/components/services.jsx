@@ -16,7 +16,7 @@ export const Services = (props) => {
             ? props.data.map((d, i) => (
                 <div key={`${d.name}-${i}`} className="col-md-4">
                   {" "}
-                  <i className="fa fa-desktop"></i>
+                  {d.image ? <span className="serviceImage"><img src={d.image}/></span>: <i className="fa fa-desktop"></i>}
                   <div className="service-desc">
                     <h3>{d.name}</h3>
                     {d?.text && <p>{d.text}</p>}

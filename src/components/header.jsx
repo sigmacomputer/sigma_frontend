@@ -1,9 +1,12 @@
 import React from "react";
+import BG from "../intro-bg.jpg"
 
 export const Header = (props) => {
   return (
     <header id="header">
-      <div className="intro">
+      <div className="intro" style={{
+        background: `url(${props.headerImage ? props.headerImage : BG}) center center no-repeat`
+      }}>
         <div className="overlay">
           <div className="container">
             <div className="row">
@@ -11,7 +14,7 @@ export const Header = (props) => {
                 <h1 style={{
                   fontSize: "1rem !important"
                 }}>
-                  {props.data ? props.data.title : "Loading"}
+                  {props.headerTitle ? props.headerTitle : props.data ? props.data.title : "Loading"}
                   <span></span>
                 </h1>
                 <a

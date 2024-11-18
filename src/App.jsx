@@ -38,11 +38,12 @@ const App = () => {
   return (
     <div>
       <Navigation />
-      <Header data={landingPageData.Header} />
+      <Header data={landingPageData.Header} headerImage={backendData?.header_image} headerTitle={backendData?.header_title} />
       <About data={landingPageData.About} aboutUs={backendData?.about_us} />
       <Services data={backendData?.courses.map(item => {
         return {
           "name": item.title,
+          "image": item.image
         }
       })} />
       <Gallery data={backendData?.gallery.map((item) => {
